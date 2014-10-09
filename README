@@ -1,0 +1,3 @@
+Estimate the average number of supercategories per article of given wikis.
+
+Intended to be run from a host in the catgraph wmflabs project. May work elsewhere in labs.
