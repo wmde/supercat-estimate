@@ -64,6 +64,13 @@ def print_estimate_supercategories(wiki, samples, depth, namespace):
         res= conn.capture_traverse_predecessors( node, depth )
         if res: # some articles have no predecessors, resulting in None return value
             totalSupercats+= len( res )
+            catset= set()
+            for row in res:
+                if row[0] in catset:
+                    raise Exception("duplicate entry in graph processor result set: %s" % row[0])
+                catset.add(row[0])
+            if len(catset) != len(res):
+                raise Exception("duplicate entries in graph processor result set! len(set)=%s len(result)=%s" % (len(catset), len(res)))
         else:
             uncategorized+= 1
         if i%10==0:
